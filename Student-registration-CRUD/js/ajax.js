@@ -1,20 +1,16 @@
 // insert data
 
-$("#btn-insert").click(function () {
-    var name = $("#name").val();
-    alert(name);
-    var email = $("#email").val();
-    var password = $("#password").val();
+$("#btn-insert").click(function (e) {
+    e.preventDefault();
+    var formData = $('#formRegistration').serialize(); 
     $.ajax({
         method: "POST",
         url: "insert.php",
-        data: {
-            name: name,
-            email: email,
-            password: password
-        },
-        success: function (data) {
-            read()
+        data: formData,
+        dataType: 'json',
+        success: function(response) {
+            $('#message').text(response.message);
+            $('.alert').toggleClass('show', message !== '');
         }
     });
 });
@@ -26,11 +22,11 @@ function read() {
     $.ajax({
         url: "read.php",
         method: "POST",
-        data: {
-            read: read
-        },
+            data: {
+                read: read
+            },
         success: function (data) {
-            $("#tbody").html(data);
+           $("#tbody").html(data);
         }
     });
 }
@@ -95,17 +91,7 @@ function Update(userId)
 }
 
 $(".read").click(function(){
-    var read = "";
-    $.ajax({
-        url: "read.php",
-        method: "POST",
-        data: {
-            read: read
-        },
-        success: function (data) {
-            $("#tbody").html(data);
-        }
-    });
+    read()
 });
 function Home()
 {

@@ -10,10 +10,12 @@ $connect = mysqli_connect("localhost", "root","", "regisinfo");
     VALUES ('$name', '$email', '$password')";
     $query = mysqli_query($connect, $insert);
     if($query){
-        echo "data inserted successfully";
+        $message = "Data added successfully!";
+        echo json_encode(array('message' => $message));
     }
     else{
-        echo "data insert failed";
+        $message = "Data insert failed!";
+        echo json_encode(array('message' => $message));
     }
 
 ?>
