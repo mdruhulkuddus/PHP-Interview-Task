@@ -69,6 +69,18 @@
                             </nav>
                         </div>
 
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#Category" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Category Module
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="Category" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="" id="add-category-link">Add Category</a>
+                                <a class="nav-link" href="" id="manage-category-link">Manage Category</a>
+                            </nav>
+                        </div>
+
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -90,7 +102,7 @@
                     // include('pages/test.php') 
                     ?>
                     <!-- Status message -->
-                    
+
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">
@@ -110,9 +122,8 @@
     <script src="js/ckeditor/ckeditor.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="js/ajax.js"></script>
-    <!-- <script src="js/ax.js"></script> -->
     <!-- <script src="js/test.js"></script> -->
-   
+
     <script>
         // CKEDITOR.replace('editor1');
     </script>

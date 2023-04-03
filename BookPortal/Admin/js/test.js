@@ -39,7 +39,25 @@ $(document).ready(function(e){
 
 
 
-
+// function Update(userId)
+// {
+//     var name = $("#name").val();
+//     var email = $("#email").val();
+//     var password = $("#password").val();
+//     $.ajax({
+//         method: "GET",
+//         url: "update.php",
+//         data: {
+//             name: name,
+//             email: email,
+//             password: password,
+//             userId: userId
+//         },
+//         success: function (data) {
+//            alert(data);
+//         }
+//     });
+// }
 
 
 

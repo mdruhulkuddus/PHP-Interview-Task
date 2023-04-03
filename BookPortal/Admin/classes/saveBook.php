@@ -1,7 +1,7 @@
 <?php
 
  //var_dump($_FILES); 
- print_r($_POST); 
+ //print_r($_POST); 
 // // // if(!$_POST['status']) echo "st = 0";
 // // // else echo "st = 1";
 

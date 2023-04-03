@@ -1,3 +1,5 @@
+// add book page
+
 $(document).ready(function (e) {
   // Submit form data via Ajax
   $("#bookForm").on('submit', function (e) {
@@ -149,24 +151,74 @@ $(document).ready(function (e) {
   });
 });
 
-// function Update(userId)
-// {
-//     var name = $("#name").val();
-//     var email = $("#email").val();
-//     var password = $("#password").val();
-//     $.ajax({
-//         method: "GET",
-//         url: "update.php",
-//         data: {
-//             name: name,
-//             email: email,
-//             password: password,
-//             userId: userId
-//         },
-//         success: function (data) {
-//            alert(data);
-//         }
-//     });
-// }
 
+// category page
 
+// open page
+$(document).ready(function () {
+  $('#add-category-link').click(function (event) {
+    event.preventDefault(); // 
+    $.ajax({
+      url: 'add-category.php',
+      type: 'GET',
+      success: function (response) {
+        $('#content-container').html(response);
+      }
+    });
+  });
+});
+
+// submit form
+$(document).ready(function (e) {
+  // Submit form data via Ajax
+  $("#categoryForm").on('submit', function (e) {
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: "insert-category.php",
+      data: new FormData(this),
+      dataType: 'json',
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function (response) {
+        $('.statusMsg').html('');
+        if (response.status == 1) {
+          $('#categoryForm')[0].reset();
+          $('.statusMsg').html('<p class="alert alert-success">' + response.message + '</p>');
+        } else {
+          $('.statusMsg').html('<p class="alert alert-danger">' + response.message + '</p>');
+        }
+      }
+    });
+  });
+});
+
+// open on click view manage category page
+$(document).ready(function () {
+  $('#manage-category-link').click(function (event) {
+    event.preventDefault();
+    $.ajax({
+      url: 'view-category.php',
+      type: 'GET',
+      success: function (response) {
+        $('#content-container').html(response);
+        viewCategories();
+      }
+    });
+  });
+});
+
+// view or read data
+function viewCategories() {
+  $.ajax({
+    url: "manage-category.php",
+    method: "POST",
+    success: function (response) {
+      $("#tbody").html(response);
+    },
+    error: function () {
+      alert("Error fetching products.");
+    }
+  });
+}
