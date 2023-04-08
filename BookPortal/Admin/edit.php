@@ -4,6 +4,8 @@ $id = $_GET['userId'];
 $select = "SELECT * FROM `bookinfo` WHERE id = $id";
 $query = mysqli_query($connect, $select);
 $fetch_book = mysqli_fetch_array($query);
+
+
 ?>
 
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -61,10 +63,13 @@ $fetch_book = mysqli_fetch_array($query);
             <div class="col-md-6 mt-2">
               <label class="form-label">Category</label>
               <select class="form-select" id="category" name="category">
-              <option value="<?php echo $fetch_book['category']; ?>" selected><?php echo $fetch_book['category']; ?></option>
-                <option value="Fiction">Fiction</option>
-                <option value="Non-fiction">Non-fiction</option>
-                <option value="Islamic">Islamic</option>
+              <?php
+                  $select = "SELECT * FROM categoryinfo ORDER BY id DESC;";
+                  $query = mysqli_query($connect, $select);
+                  while ($fetch_category = mysqli_fetch_array($query)) {
+                  ?>
+                    <option value="<?php echo $fetch_category['id'];?>" <?php echo $fetch_category['id'] == $fetch_book['category'] ? "selected" : "";?>><?php echo $fetch_category['category'];?></option>
+                  <?php } ?>
               </select>
             </div>
             <div class="col-md-6 mt-2">

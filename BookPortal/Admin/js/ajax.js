@@ -104,7 +104,8 @@ function Status(id) {
     method: "GET",
     dataType: 'json',
     data: {
-      userId: id
+      userId: id,
+      page: "book",
     },
     success: function (response) {
       // console.log(response);
@@ -222,3 +223,80 @@ function viewCategories() {
     }
   });
 }
+
+// delete category
+
+function DeleteCategory(userId) {
+  $confirm = confirm("Are you sure to delete?");
+  if ($confirm == true) {
+    $.ajax({
+      url: "delete-category.php",
+      method: "GET",
+      dataType: 'json',
+      data: {
+        userId: userId
+      },
+      success: function (response) {
+        // console.log(response);
+        $('.statusMsg').html('');
+        $('.statusMsg').html('<p class="alert alert-success">' + response.message + '</p>');
+        viewCategories();
+      }
+    });
+  }
+}
+
+// category status 
+
+function StatusCategory(id) {
+  $.ajax({
+    url: "status.php",
+    method: "GET",
+    dataType: 'json',
+    data: {
+      userId: id,
+      page: "category",
+    },
+    success: function (response) {
+      // console.log(response);
+      $('.statusMsg').html('');
+      $('.statusMsg').html('<p class="alert alert-success">' + response.message + '</p>');
+      viewCategories();
+    }
+  });
+}
+
+//edit data
+
+function EditCategory(id) {
+  $.ajax({
+    url: "edit-category.php",
+    type: 'GET',
+    data: {
+      userId: id
+    },
+    success: function (response) {
+      $('#content-container').html(response);
+    }
+  });
+}
+
+$(document).ready(function (e) {
+  // Submit form data via Ajax
+  $("#updateCategory").on('submit', function (e) {
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: "update-category.php",
+      data: new FormData(this),
+      dataType: 'json',
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function (response) {
+          $('.statusMsg').html('<p class="alert alert-success">' + response.message + '</p>');
+          viewCategories();
+      }
+    });
+  });
+});

@@ -20,7 +20,8 @@
 
             <div class="card-body">
                 <div class="border p-3 rounded">
-                <div class="statusMsg"></div>
+                    <!--  messeage show here -->
+                    <div class="statusMsg"></div>
                     <table class="table table-hover table-responsive">
                         <thead class="table-light">
                             <tr>
@@ -31,7 +32,7 @@
                             </tr>
                         </thead>
                         <tbody id="tbody">
-                            
+
                         </tbody>
                     </table>
                 </div>
